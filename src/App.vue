@@ -9,7 +9,9 @@
 
 </style> -->
 
-<script setup></script>
+<!-- Se recomienda trabajar con CompositionAPi ya que permite tener un código más reutilizable y para proyectos nuevos con complejidades.-->
+<script setup> // Se coloca setup para trabajar con Composition API, si se quita se estaría trabajando con options API
+</script>
 
 <template>
   <header class="py-5 header">
