@@ -10,9 +10,12 @@
         }
     })
 
-    const incrementar = () => {
-        numero.value++
-    }
+    // const incrementar = () => {
+    //     // numero.value++
+    //     alert('Diste click en el botón')
+    // }
+
+    defineEmits(['agregar-carrito'])
 
 </script>
 
@@ -39,11 +42,12 @@
       <button
         type="button" 
         class="btn btn-dark w-100"
-        @click="incrementar" 
+        @click="$emit('agregar-carrito')"
       >
       <!-- v-on:click="numero++" es un evento inline-handler -->
       <!-- v-on:click="incrementar" es un evento method-handler, se tiene que llamar una función arriba dentro de script -->
       <!-- los eventos no funcionan con solo : si no con un @ por ejemplo en vez de v-on:click sería @click -->
+      <!-- @click="incrementar"  cuando la función se encuentra en js dirigidio a este-->
         Agregar al Carrito
       </button>
     </div>

@@ -20,7 +20,15 @@
   // })
   // console.log(state.guitarras)
   const guitarras = ref (db) // Se crea una referencia a la data
-                                                              
+  
+  const agregarCarrito = () =>{
+  // const incrementar = () => {
+        // numero.value++
+        // alert('Diste click en el botón')
+        console.log('agregando...')
+    }
+
+  
 </script>
 
 <template>
@@ -127,7 +135,8 @@
     <div class="row mt-5">
       <guitarra
         v-for="guitarra in guitarras"
-        :propGuitar="guitarra" 
+        :propGuitar="guitarra"
+        @agregar-carrito="agregarCarrito"
       />
     </div>
   </main>
