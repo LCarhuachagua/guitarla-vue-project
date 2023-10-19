@@ -11,7 +11,7 @@
 
 <!-- Se recomienda trabajar con CompositionAPi ya que permite tener un código más reutilizable y para proyectos nuevos con complejidades.-->
 <script setup> // Se coloca setup para trabajar con Composition API, si se quita se estaría trabajando con options API
-  import {ref, reactive} from 'vue' // Se importa el objeto vue para trabajar con Composition API y los hooks ref y reactive
+  import {ref, reactive, onMounted} from 'vue' // Se importa el objeto vue para trabajar con Composition API y los hooks ref y reactive
   // funciones que da vue js para manejar la reactividad en los componentes
   import {db} from './data/guitarras'
   import Guitarra from './components/guitarra.vue'
@@ -19,13 +19,20 @@
   //   guitarras: db
   // })
   // console.log(state.guitarras)
-  const guitarras = ref (db) // Se crea una referencia a la data
-  
-  const agregarCarrito = () =>{
+
+  // const guitarras = ref (db) // Se crea una referencia a la data
+  //Se puede crear una referencia con un state de esta forma:
+  const guitarras = ref([])
+  // onMounted es un hook que se ejecuta cuando el componente se monta en el DOM
+  onMounted(() => {       // Se puede usar para hacer peticiones a una API
+    guitarras.value = db
+  })
+
+  const agregarCarrito = (propGuitar) =>{
   // const incrementar = () => {
         // numero.value++
         // alert('Diste click en el botón')
-        console.log('agregando...')
+        console.log(propGuitar)
     }
 
   

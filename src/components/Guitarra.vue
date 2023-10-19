@@ -1,8 +1,4 @@
 <script setup>
-    import { ref } from 'vue'
-
-    const numero = ref(0) 
-
     const props = defineProps({
         propGuitar: {
             type: Object,
@@ -33,16 +29,13 @@
         {{ propGuitar.nombre }}
       </h3>
       <p>
-        {{ numero }}
-      </p>
-      <p>
         {{ propGuitar.descripcion }}
       </p>
       <p class="fw-black text-primary fs-3">$ {{ propGuitar.precio }}</p>
       <button
         type="button" 
         class="btn btn-dark w-100"
-        @click="$emit('agregar-carrito')"
+        @click="$emit('agregar-carrito', propGuitar)"
       >
       <!-- v-on:click="numero++" es un evento inline-handler -->
       <!-- v-on:click="incrementar" es un evento method-handler, se tiene que llamar una función arriba dentro de script -->
