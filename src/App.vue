@@ -38,9 +38,14 @@
         // numero.value++
         // alert('Diste click en el botón')
         // console.log(propGuitar)
-        propGuitar.cantidad = 1
-        carrito.value.push(propGuitar)
-        console.log(carrito.value)
+        const existeCarrito = carrito.value.findIndex(producto => producto.id === propGuitar.id)
+
+        if(existeCarrito >= 0){
+          carrito.value[existeCarrito].cantidad++
+        }else{
+          propGuitar.cantidad = 1
+          carrito.value.push(propGuitar)
+        }
     }
 
   
