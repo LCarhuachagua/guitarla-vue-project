@@ -48,12 +48,16 @@
         }
     }
   
-  const decrementarCantidad = () =>{
-    console.log('decrementar')
+  const decrementarCantidad = (id) =>{
+    const index = carrito.value.findIndex(producto => producto.id === id)
+    if (carrito.value[index].cantidad > 1){
+      carrito.value[index].cantidad--
+    }
   }
 
-  const incrementarCantidad = () =>{
-    console.log('incrementar')
+  const incrementarCantidad = (id) =>{
+    const index = carrito.value.findIndex(producto => producto.id === id)
+    carrito.value[index].cantidad++
   }
   
 </script>
