@@ -62,6 +62,10 @@
     const index = carrito.value.findIndex(producto => producto.id === id)
     carrito.value[index].cantidad++
   }
+
+  const eliminarProducto = (id) =>{
+    carrito.value = carrito.value.filter(producto => producto.id !== id)
+  }
   
 </script>
 
@@ -73,6 +77,7 @@
     @incrementar-cantidad = "incrementarCantidad"
     @decrementar-cantidad = "decrementarCantidad" 
     @agregar-carrito="agregarCarrito"
+    @eliminar-producto="eliminarProducto"
   ></Header>
 
   
