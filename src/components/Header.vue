@@ -15,7 +15,8 @@ defineEmits([
   "incrementar-cantidad",
   "decrementar-cantidad",
   "agregar-carrito",
-  "eliminar-producto"
+  "eliminar-producto",
+  "vaciar-carrito"
 ]);
 
 const totalPagar = computed(() => {
@@ -100,6 +101,7 @@ const totalPagar = computed(() => {
               <button
                 v-if="propCarrito.length > 0"
                 class="btn btn-dark w-100 mt-3 p-2"
+                @click="$emit('vaciar-carrito')"
               >
                 Vaciar Carrito
               </button>
