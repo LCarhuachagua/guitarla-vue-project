@@ -28,9 +28,12 @@
   const guitarras = ref([])
 
   const carrito = ref([])
+
+  const guitarra = ref({  })
   // onMounted es un hook que se ejecuta cuando el componente se monta en el DOM
   onMounted(() => {       // Se puede usar para hacer peticiones a una API
     guitarras.value = db
+    guitarra.value = db[3]
   })
 
   const agregarCarrito = (propGuitar) =>{
@@ -66,8 +69,10 @@
   
   <Header
     :propCarrito="carrito"
+    :propGuitarrita="guitarra"
     @incrementar-cantidad = "incrementarCantidad"
     @decrementar-cantidad = "decrementarCantidad" 
+    @agregar-carrito="agregarCarrito"
   ></Header>
 
   
