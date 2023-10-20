@@ -1,3 +1,7 @@
+# Version Deployment
+    visit the version of the project in deployment:
+    https://6532e3cf7464501673d4bf9a--thriving-beignet-83abd3.netlify.app/
+
 # To Initial
     cd guitarla-vue
     npm install
