@@ -47,7 +47,14 @@
           carrito.value.push(propGuitar)
         }
     }
+  
+  const decrementarCantidad = () =>{
+    console.log('decrementar')
+  }
 
+  const incrementarCantidad = () =>{
+    console.log('incrementar')
+  }
   
 </script>
 
@@ -55,6 +62,8 @@
   
   <Header
     :propCarrito="carrito"
+    @incrementar-cantidad = "incrementarCantidad"
+    @decrementar-cantidad = "decrementarCantidad" 
   ></Header>
 
   
