@@ -1,16 +1,25 @@
 <script setup>
-    const props = defineProps({
-        propCarrito: {
-            type: Array,
-            required: true
-        },
-        propGuitarrita:{
-            type: Object,
-            required: true
-        }
-    })
+import { computed } from "vue";
+const props = defineProps({
+  propCarrito: {
+    type: Array,
+    required: true,
+  },
+  propGuitarrita: {
+    type: Object,
+    required: true,
+  },
+});
 
-    defineEmits(['incrementar-cantidad', 'decrementar-cantidad', 'agregar-carrito'])
+defineEmits([
+  "incrementar-cantidad",
+  "decrementar-cantidad",
+  "agregar-carrito",
+]);
+
+const totalPagar = computed(() => {
+    return props.propCarrito.reduce((totalPagar, producto)=> totalPagar + (producto.precio * producto.cantidad), 0)
+});
 </script>
 <template>
   <header class="py-5 header">
@@ -32,7 +41,9 @@
             />
 
             <div id="carrito" class="bg-white p-3">
-              <p v-if="propCarrito.length === 0" class="text-center">El carrito esta vacio</p>
+              <p v-if="propCarrito.length === 0" class="text-center">
+                El carrito esta vacio
+              </p>
               <table v-if="propCarrito.length > 0" class="w-100 table">
                 <thead>
                   <tr>
@@ -48,24 +59,28 @@
                     <td>
                       <img
                         class="img-fluid"
-                        v-bind:src="'/img/'+ producto.imagen +'.jpg'"
+                        v-bind:src="'/img/' + producto.imagen + '.jpg'"
                         :alt="'imagen' + producto.nombre"
                       />
                     </td>
                     <td>{{ producto.nombre }}</td>
                     <td class="fw-bold">{{ producto.precio }}</td>
                     <td class="flex align-items-start gap-4">
-                      <button 
+                      <button
                         type="button"
                         class="btn btn-dark"
                         @click="$emit('decrementar-cantidad', producto.id)"
-                        >-</button>
-                        {{ producto.cantidad }}
-                      <button 
+                      >
+                        -
+                      </button>
+                      {{ producto.cantidad }}
+                      <button
                         type="button"
                         class="btn btn-dark"
                         @click="$emit('incrementar-cantidad', producto.id)"
-                        >+</button>
+                      >
+                        +
+                      </button>
                     </td>
                     <td>
                       <button class="btn btn-danger" type="button">X</button>
@@ -73,11 +88,14 @@
                   </tr>
                 </tbody>
               </table>
-              
+
               <p v-if="propCarrito.length > 0" class="text-end">
-                Total pagar: <span class="fw-bold">$399</span>
+                Total pagar: <span class="fw-bold">${{ totalPagar }}</span>
               </p>
-              <button v-if="propCarrito.length > 0" class="btn btn-dark w-100 mt-3 p-2">
+              <button
+                v-if="propCarrito.length > 0"
+                class="btn btn-dark w-100 mt-3 p-2"
+              >
                 Vaciar Carrito
               </button>
             </div>
@@ -90,9 +108,11 @@
         <div class="col-md-6 text-center text-md-start pt-5">
           <h1 class="display-2 fw-bold">{{ propGuitarrita.nombre }}</h1>
           <p class="mt-5 fs-5 text-white">
-            {{ propGuitarrita.descripcion}}
+            {{ propGuitarrita.descripcion }}
           </p>
-          <p class="text-primary fs-1 fw-black">$ {{ propGuitarrita.precio }}</p>
+          <p class="text-primary fs-1 fw-black">
+            $ {{ propGuitarrita.precio }}
+          </p>
           <button
             type="button"
             class="btn fs-4 bg-primary text-white py-2 px-5"
