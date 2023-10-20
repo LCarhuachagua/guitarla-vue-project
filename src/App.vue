@@ -34,7 +34,17 @@
   onMounted(() => {       // Se puede usar para hacer peticiones a una API
     guitarras.value = db
     guitarra.value = db[3]
+
+    const carritoStorage = localStorage.getItem('carrito') // localstorage es una API de JS que permite guardar información en el navegador
+    if(carritoStorage){
+      carrito.value = JSON.parse(carritoStorage) // JSON.parse convierte un string a un objeto o array
+    }
   })
+
+  // Guardar el carrito en el localStorage
+  const guardarLocalStorage = () =>{
+    localStorage.setItem('carrito', JSON.stringify(carrito.value))
+  }
 
   const agregarCarrito = (propGuitar) =>{
   // const incrementar = () => {
@@ -49,6 +59,7 @@
           propGuitar.cantidad = 1
           carrito.value.push(propGuitar)
         }
+        guardarLocalStorage()
     }
   
   const decrementarCantidad = (id) =>{
