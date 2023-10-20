@@ -23,6 +23,8 @@
   // const guitarras = ref (db) // Se crea una referencia a la data
   //Se puede crear una referencia con un state de esta forma:
   const guitarras = ref([])
+
+  const carrito = ref([])
   // onMounted es un hook que se ejecuta cuando el componente se monta en el DOM
   onMounted(() => {       // Se puede usar para hacer peticiones a una API
     guitarras.value = db
@@ -32,7 +34,10 @@
   // const incrementar = () => {
         // numero.value++
         // alert('Diste click en el botón')
-        console.log(propGuitar)
+        // console.log(propGuitar)
+        propGuitar.cantidad = 1
+        carrito.value.push(propGuitar)
+        console.log(carrito.value)
     }
 
   
