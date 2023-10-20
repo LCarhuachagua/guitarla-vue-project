@@ -1,4 +1,12 @@
-<script setup></script>
+<script setup>
+    const props = defineProps({
+        propCarrito: {
+            type: Array,
+            required: true
+        }
+    })
+
+</script>
 <template>
   <header class="py-5 header">
     <div class="container-xl">
@@ -19,8 +27,8 @@
             />
 
             <div id="carrito" class="bg-white p-3">
-              <p class="text-center">El carrito esta vacio</p>
-              <table class="w-100 table">
+              <p v-if="propCarrito.length === 0" class="text-center">El carrito esta vacio</p>
+              <table v-if="propCarrito.length > 0" class="w-100 table">
                 <thead>
                   <tr>
                     <th>Imagen</th>
@@ -31,19 +39,19 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
+                  <tr v-for="producto in propCarrito">
                     <td>
                       <img
                         class="img-fluid"
-                        src="/img/guitarra_02.jpg"
-                        alt="imagen guitarra"
+                        v-bind:src="'/img/'+ producto.imagen +'.jpg'"
+                        :alt="'imagen' + producto.nombre"
                       />
                     </td>
-                    <td>SRV</td>
-                    <td class="fw-bold">$299</td>
+                    <td>{{ producto.nombre }}</td>
+                    <td class="fw-bold">{{ producto.precio }}</td>
                     <td class="flex align-items-start gap-4">
                       <button type="button" class="btn btn-dark">-</button>
-                      1
+                        {{ producto.cantidad }}
                       <button type="button" class="btn btn-dark">+</button>
                     </td>
                     <td>
@@ -52,11 +60,11 @@
                   </tr>
                 </tbody>
               </table>
-
-              <p class="text-end">
-                Total pagar: <span class="fw-bold">$899</span>
+              
+              <p v-if="propCarrito.length > 0" class="text-end">
+                Total pagar: <span class="fw-bold">$399</span>
               </p>
-              <button class="btn btn-dark w-100 mt-3 p-2">
+              <button v-if="propCarrito.length > 0" class="btn btn-dark w-100 mt-3 p-2">
                 Vaciar Carrito
               </button>
             </div>

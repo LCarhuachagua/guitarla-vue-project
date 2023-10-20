@@ -15,8 +15,9 @@
   // funciones que da vue js para manejar la reactividad en los componentes
   import {db} from './data/guitarras'
   import Guitarra from './components/guitarra.vue'
-  import Header from './components/Header.vue'
   import Footer from './components/Footer.vue'
+  import Header from './components/Header.vue'
+
   // const state = reactive({
   //   guitarras: db
   // })
@@ -47,13 +48,14 @@
 
 <template>
   
-  <Header>
+  <Header
+    :propCarrito="carrito"
+  ></Header>
 
-  </Header>
-
+  
   <main class="container-xl mt-5">
     <h2 class="text-center">Nuestra Colección</h2>
-
+    
     <!-- En la linea 130 Se puede poner sin el v-bind de frente los : puntos -->
     <div class="row mt-5">
       <guitarra
